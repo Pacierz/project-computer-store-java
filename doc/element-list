@@ -1,0 +1,7 @@
+module:com.app.computerstore
+com.app.computerstore
+com.app.computerstore.controllers
+com.app.computerstore.database
+com.app.computerstore.exceptions
+com.app.computerstore.models
+com.app.computerstore.utils

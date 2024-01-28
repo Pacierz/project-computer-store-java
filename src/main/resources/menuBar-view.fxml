@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<MenuBar xmlns="http://javafx.com/javafx"
+         xmlns:fx="http://javafx.com/fxml"
+         fx:controller="com.app.computerstore.controllers.MenuBarController"
+         fx:id="menuBar" prefHeight="35.0" prefWidth="1024.0">
+    <Menu fx:id="menuClients" mnemonicParsing="false">
+        <graphic>
+            <Label fx:id="menuClientsLabel" alignment="CENTER" minHeight="35.0" onMouseClicked="#onClientsMenuClick" prefHeight="35.0" prefWidth="80.0" text="Clients" />
+        </graphic>
+    </Menu>
+
+    <Menu fx:id="menuWorkers" mnemonicParsing="false">
+        <graphic>
+            <Label fx:id="menuWorkersLabel" alignment="CENTER" onMouseClicked="#onWorkersMenuClick" prefHeight="35.0" prefWidth="80.0" text="Workers" />
+        </graphic>
+    </Menu>
+
+    <Menu fx:id="menuProducts" mnemonicParsing="false">
+        <graphic>
+            <Label fx:id="menuProductsLabel" alignment="CENTER" onMouseClicked="#onProductsMenuClick" prefHeight="35.0" prefWidth="80.0" text="Products" />
+        </graphic>
+    </Menu>
+
+    <Menu fx:id="menuOrders" mnemonicParsing="false">
+        <graphic>
+            <Label fx:id="menuOrdersLabel" alignment="CENTER" onMouseClicked="#onOrdersMenuClick" prefHeight="35.0" prefWidth="80.0" text="Orders" />
+        </graphic>
+    </Menu>
+
+    <Menu fx:id="menuOrderItems" mnemonicParsing="false">
+        <graphic>
+            <Label fx:id="menuOrderItemsLabel" alignment="CENTER" onMouseClicked="#onOrderItemsMenuClick" prefHeight="35.0" prefWidth="80.0" text="OrderItems" />
+        </graphic>
+    </Menu>
+
+    <Menu fx:id="menuServices" mnemonicParsing="false">
+        <graphic>
+            <Label fx:id="menuServicesLabel" alignment="CENTER" onMouseClicked="#onServicesMenuClick" prefHeight="35.0" prefWidth="80.0" text="Services" />
+        </graphic>
+    </Menu>
+
+    <Menu fx:id="menuDelivery" mnemonicParsing="false">
+        <graphic>
+            <Label fx:id="menuDeliveryLabel" alignment="CENTER" onMouseClicked="#onDeliveryMenuClick" prefHeight="35.0" prefWidth="80.0" text="Delivery" />
+        </graphic>
+    </Menu>
+
+    <Menu fx:id="menuLogout" mnemonicParsing="false">
+        <graphic>
+            <Label fx:id="menuLogoutLabel" alignment="CENTER" onMouseClicked="#onLogoutMenuClick" prefHeight="35.0" prefWidth="80.0" text="Logout" />
+        </graphic>
+    </Menu>
+</MenuBar>

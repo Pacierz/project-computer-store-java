@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0"
+            prefWidth="1024.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.app.computerstore.controllers.ClientsController">
+    <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="572.0"
+          prefWidth="1024.0">
+        <fx:include fx:id="menuBar" source="menuBar-view.fxml"/>
+        <TableView fx:id="tableView" prefHeight="500" prefWidth="1024.0" editable="true">
+            <columns>
+                <TableColumn fx:id="columnId" prefWidth="75.0" reorderable="false" resizable="false" text="id">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="id"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="columnName" prefWidth="106.0" reorderable="false" resizable="false" text="name">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="name"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="columnSurname" prefWidth="124.0" reorderable="false" resizable="false"
+                             text="surname">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="surname"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="columnPhoneNumber" prefWidth="123.0" reorderable="false" resizable="false"
+                             text="phone_number">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="phoneNumber"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="columnEmail" prefWidth="179.0" reorderable="false" resizable="false" text="e-mail">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="email"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="columnAddress" prefWidth="317.0" reorderable="false" resizable="false"
+                             text="address">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="address"/>
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+            <VBox.margin>
+                <Insets left="50.0" right="50.0" top="30.0"/>
+            </VBox.margin>
+        </TableView>
+    </VBox>
+    <HBox layoutY="572.0" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="196.0"
+          prefWidth="1024.0" AnchorPane.topAnchor="572.0">
+        <Button fx:id="buttonAddWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                minWidth="-Infinity" mnemonicParsing="false" onAction="#onButtonAddWindowClick" prefHeight="30.0"
+                prefWidth="60.0" text="Add">
+            <HBox.margin>
+                <Insets left="370.0" top="83.0"/>
+            </HBox.margin>
+        </Button>
+        <Button fx:id="buttonDelete" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity"
+                minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT"
+                onAction="#onButtonDeleteClick" prefHeight="30.0" prefWidth="60.0" text="Delete">
+            <HBox.margin>
+                <Insets left="140.0" right="350.0" top="83.0"/>
+            </HBox.margin>
+        </Button>
+    </HBox>
+</AnchorPane>

@@ -1,1 +1,3 @@
-# project-computer-store-java
+## Database Credentials
+Username: admin  <br/>
+Password: 
