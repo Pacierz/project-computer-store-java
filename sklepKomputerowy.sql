@@ -20,6 +20,9 @@ SET default_tablespace = '';
 
 SET default_table_access_method = heap;
 
+CREATE ROLE admin;
+ALTER ROLE admin WITH SUPERUSER INHERIT CREATEROLE CREATEDB LOGIN NOREPLICATION NOBYPASSRLS;
+
 --
 -- Name: clients; Type: TABLE; Schema: public; Owner: admin
 --
@@ -555,4 +558,3 @@ ALTER TABLE ONLY public.orders_items
 --
 -- PostgreSQL database dump complete
 --
-
