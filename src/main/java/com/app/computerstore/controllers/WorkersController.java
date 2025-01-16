@@ -11,18 +11,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-/**
- * Klasa kontrolera obsługująca zarządzanie pracownikami w aplikacji sklepu komputerowego.
- * Zarządza interakcjami i zdarzeniami związanymi z widokiem pracowników.
- */
-
 public class WorkersController {
     private final WorkerRepository workerRepository;
 
-    /**
-     * Konstruktor inicjujący kontroler pracowników.
-     * Tworzy instancję repozytorium pracowników.
-     */
     public WorkersController() {
         this.workerRepository = WorkerRepository.getDefaultImplementation();
     }
@@ -47,10 +38,6 @@ public class WorkersController {
     @FXML private TableColumn<Worker, String> columnAddress;
     @FXML private TableColumn<Worker, Integer> columnSalary;
 
-    /**
-     * Metoda inicjalizująca kontroler po załadowaniu widoku FXML.
-     * Pobiera listę pracowników z repozytorium i wyświetla ją w tabeli.
-     */
     @FXML
     private void initialize() {
         workerRepository.getWorkers(tableView);
@@ -58,10 +45,6 @@ public class WorkersController {
         workerRepository.editWorker(tableView, columnName, columnSurname, columnPhoneNumber, columnEmail, columnAddress, columnSalary);
     }
 
-    /**
-     * Obsługa zdarzenia kliknięcia przycisku "Add".
-     * Dodaje nowego pracownika na podstawie danych wprowadzonych w polach tekstowych.
-     */
     @FXML
     private void onButtonAddClick(ActionEvent actionEvent) {
         var worker = Worker.of(workerRepository.getWorkers(tableView).getLast().getId(), textName.getText(), textSurname.getText(), Integer.parseInt(textPhoneNumber.getText()), textEmail.getText(), textAddress.getText(), Integer.parseInt(textSalary.getText()));
@@ -71,20 +54,12 @@ public class WorkersController {
         onButtonCancelClick(actionEvent);
     }
 
-    /**
-     * Obsługa zdarzenia kliknięcia przycisku "Cancel".
-     * Zamyka okno dodawania pracownika.
-     */
     @FXML
     private void onButtonCancelClick(ActionEvent actionEvent) {
         Stage stage = (Stage) buttonCancel.getScene().getWindow();
         stage.close();
     }
 
-    /**
-     * Obsługa zdarzenia kliknięcia przycisku "Add".
-     * Wyświetla okno do dodawania nowego pracownika.
-     */
     @FXML
     private void onButtonAddWindowClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/add/workers-add.fxml"));
@@ -98,10 +73,6 @@ public class WorkersController {
         buttonCancel.setOnAction(this::onButtonCancelClick);
     }
 
-    /**
-     * Obsługa zdarzenia kliknięcia przycisku "Delete".
-     * Usuwa wybranego pracownika z listy.
-     */
     @FXML
     private void onButtonDeleteClick() {
         var worker = tableView.getSelectionModel().getSelectedItem();

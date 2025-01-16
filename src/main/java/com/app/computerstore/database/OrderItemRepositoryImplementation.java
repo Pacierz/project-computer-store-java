@@ -20,22 +20,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- * Implementacja interfejsu OrderItemRepository odpowiedzialnego za operacje na pozycjach zamówień.
- * Pozwala na pobieranie, dodawanie, edytowanie i usuwanie pozycji zamówień.
- */
-
 @Slf4j
 public class OrderItemRepositoryImplementation implements OrderItemRepository {
     Connection connection = DatabaseConnection.getConnection();
 
-    /**
-     * Metoda pobierająca listę pozycji zamówień i wyświetlająca je w tabeli.
-     *
-     * @param tableView Tabela, do której dodawane są pozycje zamówień.
-     * @throws GetException Wyjątek, który może być rzucony w przypadku problemów z pobieraniem pozycji zamówienia.
-     * @return Lista pozycji zamówień.
-     */
     @Override
     public ObservableList<OrderItem> getOrderItems(TableView<OrderItem> tableView) {
         ObservableList<OrderItem> list = null;
@@ -68,12 +56,6 @@ public class OrderItemRepositoryImplementation implements OrderItemRepository {
         return list;
     }
 
-    /**
-     * Metoda dodająca nową pozycję zamówienia do bazy danych.
-     *
-     * @param orderItem Pozycja zamówienia do dodania.
-     * @throws AddException Wyjątek, który może być rzucony w przypadku problemów z dodawaniem pozycji zamówienia.
-     */
     @Override
     public void addOrderItem(OrderItem orderItem) {
 
@@ -93,15 +75,6 @@ public class OrderItemRepositoryImplementation implements OrderItemRepository {
         }
     }
 
-    /**
-     * Metoda umożliwiająca edycję danych pozycji zamówienia w tabeli.
-     *
-     * @param tableView      Tabela, w której wyświetlane są pozycje zamówień.
-     * @param columnOrderId  Kolumna zawierająca identyfikator zamówienia.
-     * @param columnProductId  Kolumna zawierająca identyfikator produktu.
-     * @param columnQuantity Kolumna zawierająca ilość.
-     * @param columnPrice    Kolumna zawierająca cenę.
-     */
     @Override
     public void editOrderItem(TableView<OrderItem> tableView, TableColumn<OrderItem, Integer> columnOrderId, TableColumn<OrderItem, Integer> columnProductId, TableColumn<OrderItem, Integer> columnQuantity, TableColumn<OrderItem, Float> columnPrice) {
         columnOrderId.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
@@ -133,12 +106,6 @@ public class OrderItemRepositoryImplementation implements OrderItemRepository {
         });
     }
 
-    /**
-     * Metoda aktualizująca dane pozycji zamówienia w bazie danych.
-     *
-     * @param orderItem Pozycja zamówienia do zaktualizowania.
-     * @throws UpdateException Wyjątek, który może być rzucony w przypadku problemów z aktualizowaniem pozycji zamówienia.
-     */
     @Override
     public void updateOrderItem(OrderItem orderItem) {
         try {
@@ -159,12 +126,6 @@ public class OrderItemRepositoryImplementation implements OrderItemRepository {
         }
     }
 
-    /**
-     * Metoda usuwająca pozycję zamówienia z bazy danych.
-     *
-     * @param orderItem Pozycja zamówienia do usunięcia.
-     * @throws DeleteException Wyjątek, który może być rzucony w przypadku problemów z usuwaniem pozycji zamówienia.
-     */
     @Override
     public void deleteOrderItem(OrderItem orderItem) {
         try {
@@ -179,12 +140,6 @@ public class OrderItemRepositoryImplementation implements OrderItemRepository {
         }
     }
 
-    /**
-     * Metoda sortująca pozycje zamówień według identyfikatora.
-     *
-     * @param tableView Tabela, w której wyświetlane są pozycje zamówień.
-     * @param columnId  Kolumna zawierająca identyfikator pozycji zamówienia.
-     */
     @Override
     public void sortById(TableView<OrderItem> tableView, TableColumn<OrderItem, Integer> columnId) {
         columnId.setSortType(TableColumn.SortType.ASCENDING);

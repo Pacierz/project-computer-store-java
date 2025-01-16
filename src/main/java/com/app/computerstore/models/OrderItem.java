@@ -2,36 +2,18 @@ package com.app.computerstore.models;
 
 import lombok.*;
 
-/**
- * Klasa reprezentująca pozycję zamówienia.
- */
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderItem {
-    /** Identyfikator pozycji zamówienia. */
     private int id;
-    /** Identyfikator zamówienia. */
     private int orderId;
-    /** Identyfikator produktu. */
     private int productId;
-    /** Ilość produktów. */
     private int quantity;
-    /** Cena jednostkowa produktu. */
     private float price;
 
-    /**
-     * Metoda tworząca nową pozycję zamówienia.
-     *
-     * @param id         Identyfikator pozycji zamówienia.
-     * @param orderId    Identyfikator zamówienia.
-     * @param productId  Identyfikator produktu.
-     * @param quantity   Ilość produktów.
-     * @param price      Cena jednostkowa produktu.
-     * @return           Obiekt klasy OrderItem
-     */
     public static OrderItem of(int id, int orderId, int productId, int quantity, float price) {
         validate(orderId, productId, quantity, price);
         return OrderItem.builder()
@@ -43,15 +25,6 @@ public class OrderItem {
                 .build();
     }
 
-    /**
-     * Metoda walidująca parametry pozycji zamówienia.
-     *
-     * @param orderId    Identyfikator zamówienia.
-     * @param productId  Identyfikator produktu.
-     * @param quantity   Ilość produktów.
-     * @param price      Cena jednostkowa produktu.
-     * @throws IllegalArgumentException Wyjątek rzucany gdy dane są niepoprawne.
-     */
     public static void validate(int orderId, int productId, int quantity, float price) {
         if (orderId < 0) {
             throw new IllegalArgumentException("Order ID cannot be lower than 0");

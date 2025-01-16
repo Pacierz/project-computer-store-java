@@ -11,18 +11,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-/**
- * Klasa kontrolera obsługująca zarządzanie usługami w aplikacji sklepu komputerowego.
- * Zarządza interakcjami i zdarzeniami związanymi z widokiem usług.
- */
-
 public class ServicesController {
     private final ServiceRepository serviceRepository;
 
-    /**
-     * Konstruktor inicjujący kontroler usług.
-     * Tworzy instancję repozytorium usług.
-     */
     public ServicesController() {
         this.serviceRepository = ServiceRepository.getDefaultImplementation();
     }
@@ -39,10 +30,6 @@ public class ServicesController {
     @FXML private TableColumn<Service, String> columnName;
     @FXML private TableColumn<Service, Float> columnPrice;
 
-    /**
-     * Metoda inicjalizująca kontroler po załadowaniu widoku FXML.
-     * Pobiera listę usług z repozytorium i wyświetla ją w tabeli.
-     */
     @FXML
     private void initialize() {
         serviceRepository.getServices(tableView);
@@ -50,10 +37,6 @@ public class ServicesController {
         serviceRepository.editService(tableView, columnName, columnPrice);
     }
 
-    /**
-     * Obsługa zdarzenia kliknięcia przycisku "Add".
-     * Dodaje nową usługę na podstawie danych wprowadzonych w polach tekstowych.
-     */
     @FXML
     private void onButtonAddClick(ActionEvent actionEvent) {
         var service = Service.of(serviceRepository.getServices(tableView).getLast().getId(), textName.getText(), Float.parseFloat(textPrice.getText()));
@@ -63,20 +46,12 @@ public class ServicesController {
         onButtonCancelClick(actionEvent);
     }
 
-    /**
-     * Obsługa zdarzenia kliknięcia przycisku "Cancel".
-     * Zamyka okno dodawania usługi.
-     */
     @FXML
     private void onButtonCancelClick(ActionEvent actionEvent) {
         Stage stage = (Stage) buttonCancel.getScene().getWindow();
         stage.close();
     }
 
-    /**
-     * Obsługa zdarzenia kliknięcia przycisku "Add".
-     * Wyświetla okno do dodawania nowej usługi.
-     */
     @FXML
     private void onButtonAddWindowClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/add/services-add.fxml"));
@@ -90,10 +65,6 @@ public class ServicesController {
         buttonCancel.setOnAction(this::onButtonCancelClick);
     }
 
-    /**
-     * Obsługa zdarzenia kliknięcia przycisku "Delete".
-     * Usuwa wybraną usługę z listy.
-     */
     @FXML
     private void onButtonDeleteClick() {
         var service = tableView.getSelectionModel().getSelectedItem();

@@ -12,18 +12,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.Date;
 
-/**
- * Klasa kontrolera obsługująca zarządzanie zamówieniami w aplikacji sklepu komputerowego.
- * Zarządza interakcjami i zdarzeniami związanymi z widokiem zamówień.
- */
-
 public class OrdersController {
     private final OrderRepository orderRepository;
 
-    /**
-     * Konstruktor inicjujący kontroler zamówień.
-     * Tworzy instancję repozytorium zamówień.
-     */
     public OrdersController() {
         this.orderRepository = OrderRepository.getDefaultImplementation();
     }
@@ -48,10 +39,6 @@ public class OrdersController {
     @FXML private TableColumn<Object, java.util.Date> columnDate;
     @FXML private TableColumn<Order, String> columnStatus;
 
-    /**
-     * Metoda inicjalizująca kontroler po załadowaniu widoku FXML.
-     * Pobiera listę zamówień z repozytorium i wyświetla ją w tabeli.
-     */
     @FXML
     private void initialize() {
         orderRepository.getOrders(tableView);
@@ -59,10 +46,6 @@ public class OrdersController {
         orderRepository.editOrder(tableView, columnClientId, columnQuantity, columnDeliveryId, columnPrice, columnDate, columnStatus);
     }
 
-    /**
-     * Obsługa zdarzenia kliknięcia przycisku "Add".
-     * Dodaje nowe zamówienie na podstawie danych wprowadzonych w polach tekstowych.
-     */
     @FXML
     private void onButtonAddClick(ActionEvent actionEvent) {
         var order = Order.of(orderRepository.getOrders(tableView).getLast().getId(), Integer.parseInt(textClientId.getText()), Integer.parseInt(textQuantity.getText()), Integer.parseInt(textDeliveryId.getText()), Float.parseFloat(textPrice.getText()), Date.valueOf(textDate.getValue()), textStatus.getText());
@@ -72,20 +55,12 @@ public class OrdersController {
         onButtonCancelClick(actionEvent);
     }
 
-    /**
-     * Obsługa zdarzenia kliknięcia przycisku "Cancel".
-     * Zamyka okno dodawania zamówienia.
-     */
     @FXML
     private void onButtonCancelClick(ActionEvent actionEvent) {
         Stage stage = (Stage) buttonCancel.getScene().getWindow();
         stage.close();
     }
 
-    /**
-     * Obsługa zdarzenia kliknięcia przycisku "Add".
-     * Wyświetla okno do dodawania nowego zamówienia.
-     */
     @FXML
     private void onButtonAddWindowClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/add/orders-add.fxml"));
@@ -99,10 +74,6 @@ public class OrdersController {
         buttonCancel.setOnAction(this::onButtonCancelClick);
     }
 
-    /**
-     * Obsługa zdarzenia kliknięcia przycisku "Delete".
-     * Usuwa wybrane zamówienie z listy.
-     */
     @FXML
     private void onButtonDeleteClick(){
         var order = tableView.getSelectionModel().getSelectedItem();

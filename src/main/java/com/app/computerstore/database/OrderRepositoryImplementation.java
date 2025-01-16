@@ -18,22 +18,10 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.sql.*;
 
-/**
- * Implementacja interfejsu OrderRepository odpowiedzialnego za operacje na zamówieniach.
- * Pozwala na pobieranie, dodawanie, edytowanie i usuwanie zamówień.
- */
-
 @Slf4j
 public class OrderRepositoryImplementation implements OrderRepository {
     Connection connection = DatabaseConnection.getConnection();
 
-    /**
-     * Metoda pobierająca listę zamówień i wyświetlająca je w tabeli.
-     *
-     * @param tableView Tabela, do której dodawane są zamówienia.
-     * @throws GetException Wyjątek, który może być rzucony w przypadku problemów z pobieraniem zamówienia.
-     * @return Lista zamówień.
-     */
     @Override
     public ObservableList<Order> getOrders(TableView<Order> tableView) {
         ObservableList<Order> list = null;
@@ -69,12 +57,6 @@ public class OrderRepositoryImplementation implements OrderRepository {
         return list;
     }
 
-    /**
-     * Metoda dodająca nowe zamówienie do bazy danych.
-     *
-     * @param order Zamówienie do dodania.
-     * @throws AddException Wyjątek, który może być rzucony w przypadku problemów z dodawaniem zamówienia.
-     */
     @Override
     public void addOrder(Order order) {
 
@@ -96,17 +78,6 @@ public class OrderRepositoryImplementation implements OrderRepository {
         }
     }
 
-    /**
-     * Metoda umożliwiająca edycję danych zamówienia w tabeli.
-     *
-     * @param tableView      Tabela, w której wyświetlane są zamówienia.
-     * @param columnClientId  Kolumna zawierająca identyfikator klienta.
-     * @param columnQuantity Kolumna zawierająca ilość.
-     * @param columnDeliveryId Kolumna zawierająca identyfikator dostawy.
-     * @param columnPrice    Kolumna zawierająca cenę.
-     * @param columnDate     Kolumna zawierająca datę.
-     * @param columnStatus   Kolumna zawierająca status.
-     */
     @Override
     public void editOrder(TableView<Order> tableView, TableColumn<Order, Integer> columnClientId, TableColumn<Order, Integer> columnQuantity, TableColumn<Order, Integer> columnDeliveryId, TableColumn<Order, Float> columnPrice, TableColumn<Object, java.util.Date> columnDate, TableColumn<Order, String> columnStatus) {
         columnClientId.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
@@ -152,12 +123,6 @@ public class OrderRepositoryImplementation implements OrderRepository {
         });
     }
 
-    /**
-     * Metoda aktualizująca dane zamówienia w bazie danych.
-     *
-     * @param order Zamówienie do zaktualizowania.
-     * @throws UpdateException Wyjątek, który może być rzucony w przypadku problemów z aktualizowaniem zamówienia.
-     */
     @Override
     public void updateOrder(Order order) {
         try {
@@ -179,12 +144,6 @@ public class OrderRepositoryImplementation implements OrderRepository {
         }
     }
 
-    /**
-     * Metoda usuwająca zamówienie z bazy danych.
-     *
-     * @param order Zamówienie do usunięcia.
-     * @throws DeleteException Wyjątek, który może być rzucony w przypadku problemów z usuwaniem zamówienia.
-     */
     @Override
     public void deleteOrder(Order order){
         try {
@@ -199,12 +158,6 @@ public class OrderRepositoryImplementation implements OrderRepository {
         }
     }
 
-    /**
-     * Metoda sortująca zamówienia według identyfikatora.
-     *
-     * @param tableView Tabela, w której wyświetlane są zamówienia.
-     * @param columnId  Kolumna zawierająca identyfikator zamówienia.
-     */
     @Override
     public void sortById(TableView<Order> tableView, TableColumn<Order, Integer> columnId) {
         columnId.setSortType(TableColumn.SortType.ASCENDING);

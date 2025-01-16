@@ -11,18 +11,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-/**
- * Klasa kontrolera obsługująca zarządzanie dostawami w aplikacji sklepu komputerowego.
- * Zarządza interakcjami i zdarzeniami związanymi z widokiem dostaw.
- */
-
 public class DeliveryController {
     private final DeliveryRepository deliveryRepository;
 
-    /**
-     * Konstruktor inicjujący kontroler dostaw.
-     * Tworzy instancję repozytorium dostaw.
-     */
     public DeliveryController() {
         this.deliveryRepository = DeliveryRepository.getDefaultImplementation();
     }
@@ -39,10 +30,6 @@ public class DeliveryController {
     @FXML private TableColumn<Delivery, String> columnName;
     @FXML private TableColumn<Delivery, Float> columnPrice;
 
-    /**
-     * Metoda inicjalizująca kontroler po załadowaniu widoku FXML.
-     * Pobiera listę dostaw z repozytorium i wyświetla ją w tabeli.
-     */
     @FXML
     private void initialize() {
         deliveryRepository.getDelivery(tableView);
@@ -50,10 +37,6 @@ public class DeliveryController {
         deliveryRepository.editDelivery(tableView, columnName, columnPrice);
     }
 
-    /**
-     * Obsługa zdarzenia kliknięcia przycisku "Add".
-     * Dodaje nową dostawę na podstawie danych wprowadzonych w polach tekstowych.
-     */
     @FXML
     private void onButtonAddClick(ActionEvent actionEvent) {
         var delivery = Delivery.of(deliveryRepository.getDelivery(tableView).getLast().getId(), textName.getText(), Float.parseFloat(textPrice.getText()));
@@ -63,20 +46,12 @@ public class DeliveryController {
         onButtonCancelClick(actionEvent);
     }
 
-    /**
-     * Obsługa zdarzenia kliknięcia przycisku "Cancel".
-     * Zamyka okno dodawania dostawy.
-     */
     @FXML
     private void onButtonCancelClick(ActionEvent actionEvent) {
         Stage stage = (Stage) buttonCancel.getScene().getWindow();
         stage.close();
     }
 
-    /**
-     * Obsługa zdarzenia kliknięcia przycisku "Add".
-     * Wyświetla okno do dodawania nowej dostawy.
-     */
     @FXML
     private void onButtonAddWindowClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/add/delivery-add.fxml"));
@@ -90,10 +65,6 @@ public class DeliveryController {
         buttonCancel.setOnAction(this::onButtonCancelClick);
     }
 
-    /**
-     * Obsługa zdarzenia kliknięcia przycisku "Delete".
-     * Usuwa wybraną dostawę z listy.
-     */
     @FXML
     private void onButtonDeleteClick(ActionEvent actionEvent) {
         var delivery = tableView.getSelectionModel().getSelectedItem();

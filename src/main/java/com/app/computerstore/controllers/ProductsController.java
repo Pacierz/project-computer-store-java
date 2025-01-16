@@ -11,18 +11,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-/**
- * Klasa kontrolera obsługująca zarządzanie produktami w aplikacji sklepu komputerowego.
- * Zarządza interakcjami i zdarzeniami związanymi z widokiem produktów.
- */
-
 public class ProductsController {
     private final ProductRepository productRepository;
 
-    /**
-     * Konstruktor inicjujący kontroler produktów.
-     * Tworzy instancję repozytorium produktów.
-     */
     public ProductsController() {
         this.productRepository = ProductRepository.getDefaultImplementation();
     }
@@ -43,10 +34,6 @@ public class ProductsController {
     @FXML private TableColumn<Product, Float> columnPrice;
     @FXML private TableColumn<Product, Integer> columnQuantity;
 
-    /**
-     * Metoda inicjalizująca kontroler po załadowaniu widoku FXML.
-     * Pobiera listę produktów z repozytorium i wyświetla ją w tabeli.
-     */
     @FXML
     private void initialize() {
         productRepository.getProducts(tableView);
@@ -54,10 +41,6 @@ public class ProductsController {
         productRepository.editProduct(tableView, columnName, columnCategory, columnPrice, columnQuantity);
     }
 
-    /**
-     * Obsługa zdarzenia kliknięcia przycisku "Add".
-     * Dodaje nowy produkt na podstawie danych wprowadzonych w polach tekstowych.
-     */
     @FXML
     private void onButtonAddClick(ActionEvent actionEvent) {
         var product = Product.of(productRepository.getProducts(tableView).getLast().getId(), textName.getText(), textCategory.getText(), Float.parseFloat(textPrice.getText()), Integer.parseInt(textQuantity.getText()));
@@ -67,20 +50,12 @@ public class ProductsController {
         onButtonCancelClick(actionEvent);
     }
 
-    /**
-     * Obsługa zdarzenia kliknięcia przycisku "Cancel".
-     * Zamyka okno dodawania produktu.
-     */
     @FXML
     private void onButtonCancelClick(ActionEvent actionEvent) {
         Stage stage = (Stage) buttonCancel.getScene().getWindow();
         stage.close();
     }
 
-    /**
-     * Obsługa zdarzenia kliknięcia przycisku "Add".
-     * Wyświetla okno do dodawania nowego produktu.
-     */
     @FXML
     private void onButtonAddWindowClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/add/products-add.fxml"));
@@ -94,10 +69,6 @@ public class ProductsController {
         buttonCancel.setOnAction(this::onButtonCancelClick);
     }
 
-    /**
-     * Obsługa zdarzenia kliknięcia przycisku "Delete".
-     * Usuwa wybrany produkt z listy.
-     */
     @FXML
     private void onButtonDeleteClick()  {
         var product = tableView.getSelectionModel().getSelectedItem();

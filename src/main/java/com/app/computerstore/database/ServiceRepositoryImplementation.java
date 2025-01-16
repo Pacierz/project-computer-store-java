@@ -19,22 +19,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- * Implementacja interfejsu ServiceRepository odpowiedzialnego za operacje na usługach.
- * Pozwala na pobieranie, dodawanie, edytowanie i usuwanie usług.
- */
-
 @Slf4j
 public class ServiceRepositoryImplementation implements ServiceRepository {
     Connection connection = DatabaseConnection.getConnection();
 
-    /**
-     * Metoda pobierająca listę usług i wyświetlająca je w tabeli.
-     *
-     * @param tableView Tabela, do której dodawane są usługi.
-     * @throws GetException Wyjątek, który może być rzucony w przypadku problemów z pobieraniem usługi.
-     * @return Lista usług.
-     */
     @Override
     public ObservableList<Service> getServices(TableView<Service> tableView) {
         ObservableList<Service> list = null;
@@ -65,12 +53,6 @@ public class ServiceRepositoryImplementation implements ServiceRepository {
         return list;
     }
 
-    /**
-     * Metoda dodająca nową usługę do bazy danych.
-     *
-     * @param service Usługa do dodania.
-     * @throws AddException Wyjątek, który może być rzucony w przypadku problemów z dodawaniem usługi.
-     */
     @Override
     public void addService(Service service) {
         try {
@@ -87,13 +69,6 @@ public class ServiceRepositoryImplementation implements ServiceRepository {
         }
     }
 
-    /**
-     * Metoda umożliwiająca edycję danych usługi w tabeli.
-     *
-     * @param tableView  Tabela, w której wyświetlane są usługi.
-     * @param columnName Kolumna zawierająca nazwę usługi.
-     * @param columnPrice Kolumna zawierająca cenę usługi.
-     */
     @Override
     public void editService(TableView<Service> tableView, TableColumn<Service, String> columnName, TableColumn<Service, Float> columnPrice) {
         columnName.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -111,12 +86,6 @@ public class ServiceRepositoryImplementation implements ServiceRepository {
         });
     }
 
-    /**
-     * Metoda aktualizująca dane usługi w bazie danych.
-     *
-     * @param service Usługa do zaktualizowania.
-     * @throws UpdateException Wyjątek, który może być rzucony w przypadku problemów z aktualizowaniem usługi.
-     */
     @Override
     public void updateService(Service service){
         try {
@@ -134,12 +103,6 @@ public class ServiceRepositoryImplementation implements ServiceRepository {
         }
     }
 
-    /**
-     * Metoda usuwająca usługę z bazy danych.
-     *
-     * @param service Usługa do usunięcia.
-     * @throws DeleteException Wyjątek, który może być rzucony w przypadku problemów z usuwaniem usługi.
-     */
     @Override
     public void deleteService(Service service){
         try {
@@ -154,12 +117,6 @@ public class ServiceRepositoryImplementation implements ServiceRepository {
         }
     }
 
-    /**
-     * Metoda sortująca usługi według identyfikatora.
-     *
-     * @param tableView Tabela, w której wyświetlane są usługi.
-     * @param columnId  Kolumna zawierająca identyfikator usługi.
-     */
     @Override
     public void sortById(TableView<Service> tableView, TableColumn<Service, Integer> columnId) {
         columnId.setSortType(TableColumn.SortType.ASCENDING);

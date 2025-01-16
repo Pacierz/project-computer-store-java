@@ -20,22 +20,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- * Implementacja interfejsu ProductRepository odpowiedzialnego za operacje na produktach.
- * Pozwala na pobieranie, dodawanie, edytowanie i usuwanie produktów.
- */
-
 @Slf4j
 public class ProductRepositoryImplementation implements ProductRepository {
     Connection connection = DatabaseConnection.getConnection();
 
-    /**
-     * Metoda pobierająca listę produktów i wyświetlająca je w tabeli.
-     *
-     * @param tableView Tabela, do której dodawane są produkty.
-     * @throws GetException Wyjątek, który może być rzucony w przypadku problemów z pobieraniem produktów.
-     * @return Lista produktów.
-     */
     @Override
     public ObservableList<Product> getProducts(TableView<Product> tableView) {
         ObservableList<Product> list = null;
@@ -68,12 +56,6 @@ public class ProductRepositoryImplementation implements ProductRepository {
         return list;
     }
 
-    /**
-     * Metoda dodająca nowy produkt do bazy danych.
-     *
-     * @param product Produkt do dodania.
-     * @throws AddException Wyjątek, który może być rzucony w przypadku problemów z dodawaniem produktu.
-     */
     @Override
     public void addProduct(Product product) {
         try {
@@ -92,15 +74,6 @@ public class ProductRepositoryImplementation implements ProductRepository {
         }
     }
 
-    /**
-     * Metoda umożliwiająca edycję danych produktu w tabeli.
-     *
-     * @param tableView       Tabela, w której wyświetlane są produkty.
-     * @param columnName      Kolumna zawierająca nazwę produktu.
-     * @param columnCategory  Kolumna zawierająca kategorię produktu.
-     * @param columnPrice     Kolumna zawierająca cenę produktu.
-     * @param columnQuantity  Kolumna zawierająca ilość produktu.
-     */
     @Override
     public void editProduct(TableView<Product> tableView, TableColumn<Product, String> columnName, TableColumn<Product, String> columnCategory, TableColumn<Product, Float> columnPrice, TableColumn<Product, Integer> columnQuantity) {
         columnName.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -132,12 +105,6 @@ public class ProductRepositoryImplementation implements ProductRepository {
         });
     }
 
-    /**
-     * Metoda aktualizująca dane produktu w bazie danych.
-     *
-     * @param product Produkt do zaktualizowania.
-     * @throws UpdateException Wyjątek, który może być rzucony w przypadku problemów z aktualizowaniem usługi.
-     */
     @Override
     public void updateProduct(Product product) {
         try {
@@ -157,12 +124,6 @@ public class ProductRepositoryImplementation implements ProductRepository {
         }
     }
 
-    /**
-     * Metoda usuwająca produkt z bazy danych.
-     *
-     * @param product Produkt do usunięcia.
-     * @throws DeleteException Wyjątek, który może być rzucony w przypadku problemów z usuwaniem produktu.
-     */
     @Override
     public void deleteProduct(Product product) {
         try {
@@ -177,12 +138,6 @@ public class ProductRepositoryImplementation implements ProductRepository {
         }
     }
 
-    /**
-     * Metoda sortująca produkty według identyfikatora.
-     *
-     * @param tableView Tabela, w której wyświetlane są produkty.
-     * @param columnId  Kolumna zawierająca identyfikator produktu.
-     */
     @Override
     public void sortById(TableView<Product> tableView, TableColumn<Product, Integer> columnId) {
         columnId.setSortType(TableColumn.SortType.ASCENDING);

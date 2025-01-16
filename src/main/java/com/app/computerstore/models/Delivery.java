@@ -2,30 +2,16 @@ package com.app.computerstore.models;
 
 import lombok.*;
 
-/**
- * Klasa reprezentująca dostawę.
- */
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Builder
 public class Delivery {
-    /** Identyfikator dostawy. */
     private int id;
-    /** Nazwa dostawy. */
     private String name;
-    /** Cena dostawy. */
     private float price;
 
-    /**
-     * Metoda tworząca nową dostawę.
-     *
-     * @param id    Identyfikator dostawy.
-     * @param name  Nazwa dostawy.
-     * @param price Cena dostawy.
-     * @return      Obiekt klasy Delivery.
-     */
     public static Delivery of(int id, String name, float price) {
         validate(name, price);
         return Delivery.builder()
@@ -35,13 +21,6 @@ public class Delivery {
                 .build();
     }
 
-    /**
-     * Metoda walidująca parametry dostawy.
-     *
-     * @param name  Nazwa dostawy.
-     * @param price Cena dostawy.
-     * @throws IllegalArgumentException Wyjątek rzucany gdy dane są niepoprawne.
-     */
     public static void validate(String name, float price) {
         if (name == null || name.isEmpty() || name.matches(".*\\d.*")) {
             throw new IllegalArgumentException("Name cannot be empty, null or contain digits");

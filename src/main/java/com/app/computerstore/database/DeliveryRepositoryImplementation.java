@@ -19,22 +19,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- * Implementacja interfejsu DeliveryRepository odpowiedzialnego za operacje na dostawach.
- * Pozwala na pobieranie, dodawanie, edytowanie i usuwanie dostaw.
- */
-
 @Slf4j
 public class DeliveryRepositoryImplementation implements DeliveryRepository {
     Connection connection = DatabaseConnection.getConnection();
 
-    /**
-     * Metoda pobierająca listę dostaw i wyświetlająca je w tabeli.
-     *
-     * @param tableView Tabela, do której dodawane są dostawy.
-     * @throws GetException Wyjątek, który może być rzucony w przypadku problemów z pobieraniem dostawy.
-     * @return Lista dostaw.
-     */
     @Override
     public ObservableList<Delivery> getDelivery(TableView<Delivery> tableView) {
         ObservableList<Delivery> list = null;
@@ -65,12 +53,6 @@ public class DeliveryRepositoryImplementation implements DeliveryRepository {
         return list;
     }
 
-    /**
-     * Metoda dodająca nową dostawę do bazy danych.
-     *
-     * @param delivery Dostawa do dodania.
-     * @throws AddException Wyjątek, który może być rzucony w przypadku problemów z dodawaniem dostawy.
-     */
     @Override
     public void addDelivery(Delivery delivery) {
         try {
@@ -87,13 +69,6 @@ public class DeliveryRepositoryImplementation implements DeliveryRepository {
         }
     }
 
-    /**
-     * Metoda umożliwiająca edycję danych dostawy w tabeli.
-     *
-     * @param tableView    Tabela, w której wyświetlane są dostawy.
-     * @param columnName   Kolumna zawierająca nazwę dostawy.
-     * @param columnPrice  Kolumna zawierająca cenę dostawy.
-     */
     @Override
     public void editDelivery(TableView<Delivery> tableView, TableColumn<Delivery, String> columnName, TableColumn<Delivery, Float> columnPrice) {
         columnName.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -111,12 +86,6 @@ public class DeliveryRepositoryImplementation implements DeliveryRepository {
         });
     }
 
-    /**
-     * Metoda aktualizująca dane dostawy w bazie danych.
-     *
-     * @param delivery Dostawa do zaktualizowania.
-     * @throws UpdateException Wyjątek, który może być rzucony w przypadku problemów z aktualizowaniem dostawy.
-     */
     @Override
     public void updateDelivery(Delivery delivery) {
         try {
@@ -134,12 +103,6 @@ public class DeliveryRepositoryImplementation implements DeliveryRepository {
         }
     }
 
-    /**
-     * Metoda usuwająca dostawę z bazy danych.
-     *
-     * @param delivery Dostawa do usunięcia.
-     * @throws DeleteException Wyjątek, który może być rzucony w przypadku problemów z usuwaniem dostawy.
-     */
     @Override
     public void deleteDelivery(Delivery delivery){
         try {
@@ -154,12 +117,6 @@ public class DeliveryRepositoryImplementation implements DeliveryRepository {
         }
     }
 
-    /**
-     * Metoda sortująca dostawy według identyfikatora.
-     *
-     * @param tableView Tabela, w której wyświetlane są dostawy.
-     * @param columnId  Kolumna zawierająca identyfikator dostawy.
-     */
     @Override
     public void sortById(TableView<Delivery> tableView, TableColumn<Delivery, Integer> columnId) {
         columnId.setSortType(TableColumn.SortType.ASCENDING);

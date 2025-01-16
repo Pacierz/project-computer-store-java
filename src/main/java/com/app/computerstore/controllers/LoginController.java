@@ -12,11 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 
-/**
- * Klasa kontrolera obsługująca proces logowania do aplikacji sklepu komputerowego.
- * Zarządza interakcjami i zdarzeniami związanymi z widokiem logowania.
- */
-
 @Slf4j
 public class LoginController {
     @FXML private Label usernameLabel;
@@ -25,13 +20,6 @@ public class LoginController {
     @FXML private PasswordField passwordField;
     @FXML private Button loginButton;
 
-    /**
-     * Obsługa zdarzenia kliknięcia przycisku "Sign in".
-     * Próbuje zestawić połączenie z bazą danych na podstawie wprowadzonych danych logowania.
-     * Przełącza scenę na główny widok aplikacji w przypadku poprawnych danych.
-     * @param event Zdarzenie związane z kliknięciem przycisku "Sign in".
-     * @throws IOException Wyjątek rzucany w przypadku problemów z przełączeniem sceny.
-     */
     @FXML
     private void onLoginButtonClick(Event event) throws IOException {
         if (null != usernameField.getText() || usernameField.getText().isEmpty()) {

@@ -19,22 +19,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- * Implementacja interfejsu ClientRepository odpowiedzialnego za operacje na klientach.
- * Pozwala na pobieranie, dodawanie, edytowanie i usuwanie klientów.
- */
-
 @Slf4j
 public class ClientRepositoryImplementation implements ClientRepository {
     Connection connection = DatabaseConnection.getConnection();
 
-    /**
-     * Metoda pobierająca listę klientów i wyświetlająca ich w tabeli.
-     *
-     * @param tableView Tabela, do której dodawani są klienci.
-     * @throws GetException Wyjątek, który może być rzucony w przypadku problemów z pobieraniem klienta.
-     * @return Lista klientów.
-     */
     @Override
     public ObservableList<Client> getClients(TableView<Client> tableView) {
         ObservableList<Client> list = null;
@@ -67,12 +55,6 @@ public class ClientRepositoryImplementation implements ClientRepository {
         return list;
     }
 
-    /**
-     * Metoda dodająca nowego klienta do bazy danych.
-     *
-     * @param client Klient do dodania.
-     * @throws AddException Wyjątek, który może być rzucony w przypadku problemów z dodawaniem klienta.
-     */
     @Override
     public void addClient(Client client) {
         try {
@@ -92,16 +74,6 @@ public class ClientRepositoryImplementation implements ClientRepository {
         }
     }
 
-    /**
-     * Metoda umożliwiająca edycję danych klienta w tabeli.
-     *
-     * @param tableView       Tabela, w której wyświetleni są klienci.
-     * @param columnName      Kolumna zawierająca imię klienta.
-     * @param columnSurname   Kolumna zawierająca nazwisko klienta.
-     * @param columnPhoneNumber Kolumna zawierająca numer telefonu klienta.
-     * @param columnEmail     Kolumna zawierająca adres e-mail klienta.
-     * @param columnAddress   Kolumna zawierająca adres klienta.
-     */
     @Override
     public void editClient(TableView<Client> tableView, TableColumn<Client, String> columnName, TableColumn<Client, String> columnSurname, TableColumn<Client, Integer> columnPhoneNumber, TableColumn<Client, String> columnEmail, TableColumn<Client, String> columnAddress) {
         columnName.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -140,12 +112,6 @@ public class ClientRepositoryImplementation implements ClientRepository {
         });
     }
 
-    /**
-     * Metoda aktualizująca dane klienta w bazie danych.
-     *
-     * @param client Klient do zaktualizowania.
-     * @throws UpdateException Wyjątek, który może być rzucony w przypadku problemów z aktualizowaniem klienta.
-     */
     @Override
     public void updateClient(Client client) {
         try {
@@ -166,12 +132,6 @@ public class ClientRepositoryImplementation implements ClientRepository {
         }
     }
 
-    /**
-     * Metoda usuwająca klienta z bazy danych.
-     *
-     * @param client Klient do usunięcia.
-     * @throws DeleteException Wyjątek, który może być rzucony w przypadku problemów z usuwaniem klienta.
-     */
     @Override
     public void deleteClient(Client client) {
         try {
@@ -186,12 +146,6 @@ public class ClientRepositoryImplementation implements ClientRepository {
         }
     }
 
-    /**
-     * Metoda sortująca pracowników według identyfikatora.
-     *
-     * @param tableView Tabela, w której wyświetleni są klienci.
-     * @param columnId  Kolumna zawierająca identyfikator klienta.
-     */
     @Override
     public void sortById(TableView<Client> tableView, TableColumn<Client, Integer> columnId) {
         columnId.setSortType(TableColumn.SortType.ASCENDING);

@@ -19,22 +19,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- * Implementacja interfejsu WorkerRepository odpowiedzialnego za operacje na pracownikach.
- * Pozwala na pobieranie, dodawanie, edytowanie i usuwanie pracowników.
- */
-
 @Slf4j
 public class WorkerRepositoryImplementation implements WorkerRepository {
     Connection connection = DatabaseConnection.getConnection();
 
-    /**
-     * Metoda pobierająca listę pracowników i wyświetlająca ich w tabeli.
-     *
-     * @param tableView Tabela, do której dodawani są pracownicy.
-     * @throws GetException Wyjątek, który może być rzucony w przypadku problemów z pobieraniem pracownika.
-     * @return Lista pracowników.
-     */
     @Override
     public ObservableList<Worker> getWorkers(TableView<Worker> tableView) {
         ObservableList<Worker> list = null;
@@ -69,12 +57,6 @@ public class WorkerRepositoryImplementation implements WorkerRepository {
         return list;
     }
 
-    /**
-     * Metoda dodająca nowego pracownika do bazy danych.
-     *
-     * @param worker Pracownik do dodania.
-     * @throws AddException Wyjątek, który może być rzucony w przypadku problemów z dodawaniem pracownika.
-     */
     @Override
     public void addWorker(Worker worker) {
         try {
@@ -96,17 +78,6 @@ public class WorkerRepositoryImplementation implements WorkerRepository {
 
     }
 
-    /**
-     * Metoda umożliwiająca edycję danych pracownika w tabeli.
-     *
-     * @param tableView       Tabela, w której wyświetleni są pracownicy.
-     * @param columnName      Kolumna zawierająca imię pracownika.
-     * @param columnSurname   Kolumna zawierająca nazwisko pracownika.
-     * @param columnPhoneNumber Kolumna zawierająca numer telefonu pracownika.
-     * @param columnEmail     Kolumna zawierająca adres e-mail pracownika.
-     * @param columnAddress   Kolumna zawierająca adres pracownika.
-     * @param columnSalary    Kolumna zawierająca wynagrodzenie pracownika.
-     */
     @Override
     public void editWorker(TableView<Worker> tableView, TableColumn<Worker, String> columnName, TableColumn<Worker, String> columnSurname, TableColumn<Worker, Integer> columnPhoneNumber, TableColumn<Worker, String> columnEmail, TableColumn<Worker, String> columnAddress, TableColumn<Worker, Integer> columnSalary) {
         columnName.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -152,12 +123,6 @@ public class WorkerRepositoryImplementation implements WorkerRepository {
         });
     }
 
-    /**
-     * Metoda aktualizująca dane pracownika w bazie danych.
-     *
-     * @param worker Pracownik do zaktualizowania.
-     * @throws UpdateException Wyjątek, który może być rzucony w przypadku problemów z aktualizowaniem pracownika.
-     */
     @Override
     public void updateWorker(Worker worker) {
         try {
@@ -179,12 +144,6 @@ public class WorkerRepositoryImplementation implements WorkerRepository {
         }
     }
 
-    /**
-     * Metoda usuwająca pracownika z bazy danych.
-     *
-     * @param worker Pracownik do usunięcia.
-     * @throws DeleteException Wyjątek, który może być rzucony w przypadku problemów z usuwaniem pracownika.
-     */
     @Override
     public void deleteWorker(Worker worker) {
         try {
@@ -199,12 +158,6 @@ public class WorkerRepositoryImplementation implements WorkerRepository {
         }
     }
 
-    /**
-     * Metoda sortująca pracowników według identyfikatora.
-     *
-     * @param tableView Tabela, w której wyświetleni są pracownicy.
-     * @param columnId  Kolumna zawierająca identyfikator pracownika.
-     */
     @Override
     public void sortById(TableView<Worker> tableView, TableColumn<Worker, Integer> columnId) {
         columnId.setSortType(TableColumn.SortType.ASCENDING);
